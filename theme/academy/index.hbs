@@ -27,7 +27,6 @@ into the {body} of the default.hbs template --}}
         <div class="headline">
             <div class="subscribe {{#if
                     @blog.cover_image}}" style="background-image: linear-gradient(rgba(102, 84, 52, 0.45),rgba(102, 84, 52, 0.45)), url({{@blog.cover_image}}){{else}}no-cover{{/if}}">
-
                 <!-- Begin MailChimp Signup Form -->
                 <div id="mc_embed_signup">
                     <form action="https://sourceinida.us17.list-manage.com/subscribe/post?u=ca6fa852266676f7ba47586b7&amp;id=cd5aa16b11"
@@ -58,9 +57,10 @@ into the {body} of the default.hbs template --}}
                         </div>
                     </form>
                 </div>
-
             </div>
-            <div class="event"></div>
+            <div class="event">
+                <h2></h2>
+            </div>
         </div>
         <div class="post-feed">
             {{#foreach posts}}
