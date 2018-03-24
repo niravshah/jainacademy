@@ -1,0 +1,32 @@
+version: '3.1'
+services:
+  mysql:
+    image: 'mysql:5.7'
+    restart: 'always'
+    volumes:
+      - ./cc_mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=blog_db
+      - MYSQL_USER=blog_user
+      - MYSQL_PASSWORD=${BLOG_PASSWORD}
+  blog:
+    image: 'ghost:1-alpine'
+    restart: 'always'
+    ports:
+      - 8080:2368
+    environment:
+      database__client: mysql
+      database__connection__host: mysql
+      database__connection__user: blog_user
+      database__connection__password: ${BLOG_PASSWORD}
+      database__connection__database: blog_db
+      mail__transport: SMTP
+      mail__from: info@blog.cryptochains.in
+      mail__options__service: Mailgun
+      mail__options__auth__user: ${MAILGUN_USER}
+      mail__options__auth__pass: ${MAILGUN_PASS}
+    volumes:
+      - ./cc_blog/content:/var/lib/ghost/content
+    depends_on:
+      - mysql
