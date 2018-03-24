@@ -25,7 +25,8 @@ into the {body} of the default.hbs template --}}
     <div class="inner">
 
         <div class="headline">
-            <div class="subscribe">
+            <div class="subscribe {{#if
+                    @blog.cover_image}}" style="background-image: linear-gradient(rgba(102, 84, 52, 0.45),rgba(102, 84, 52, 0.45)), url({{@blog.cover_image}}){{else}}no-cover{{/if}}">
 
                 <!-- Begin MailChimp Signup Form -->
                 <div id="mc_embed_signup">
@@ -33,8 +34,11 @@ into the {body} of the default.hbs template --}}
                           method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form"
                           class="validate" target="_blank" novalidate>
                         <div id="mc_embed_signup_scroll">
-                            <h2>Subscribe to our mailing list</h2>
-                            <div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
+                            <h2>Learn About Jainism</h2>
+                            <p>We produce a high quality monthly newsletter with in-depth articles focusing on
+                                contemporary Jain values & living.
+                                Subscribe now to stay updated</p>
+
                             <div class="mc-field-group">
                                 <label for="mce-EMAIL">Email Address <span class="asterisk">*</span>
                                 </label>
