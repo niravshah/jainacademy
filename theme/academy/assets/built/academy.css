@@ -117,5 +117,10 @@ p.bold {
     .headline {
         flex-flow: row wrap;
     }
+
+    .event, .subscribe {
+        margin-right: 0px;
+        margin-left: 0px;
+    }
 }
 
