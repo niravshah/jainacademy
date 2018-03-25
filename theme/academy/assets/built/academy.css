@@ -2,6 +2,14 @@
     max-width: 2040px;
 }
 
+.site-header {
+    background-color: black;
+}
+
+.site-nav-logo img {
+    height: 32px;
+}
+
 .site-logo {
     max-height: 85px;
 }
@@ -126,3 +134,32 @@ p.bold {
     }
 }
 
+.eventpage .post-full-header h1 {
+    text-align: left;
+    font-size: 4rem;
+    font-weight: 600;
+}
+
+.eventpage .ticketsale {
+    padding: 40px 20px;
+}
+
+.eventpage .ticketsale h2 {
+    padding-top: 3vw;
+    padding-bottom: 2vw;
+}
+
+.eventpage .ticketsale td {
+    padding: 1vw 0vw;
+}
+
+.eventpage .ticketsale th {
+    padding-bottom: 1vw;
+    background-color: #826b4461;
+    border-bottom: 3px solid #826147;;
+}
+
+.eventpage .checkout {
+    margin: 40px 0px;
+    text-align: right;
+}

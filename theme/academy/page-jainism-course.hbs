@@ -1,0 +1,126 @@
+{{!< default}}
+{{!-- The tag above means: insert everything in this file
+into the {body} of the default.hbs template --}}
+
+{{!-- The big featured header, it uses blog cover image as a BG if available --}}
+<header class="site-header outer">
+    <div class="inner">
+        {{> "site-nav"}}
+    </div>
+</header>
+
+{{!-- Everything inside the #post tags pulls data from the post --}}
+{{#post}}
+
+    <main id="site-main" class="site-main outer" role="main">
+
+        <div class="eventpage container">
+            <div class="row">
+                <div class="column column-60">
+                    <article class="post-full {{post_class}} {{#unless feature_image}}no-image{{/unless}}">
+
+                        <header class="post-full-header">
+                            <h1 class="post-full-title">{{title}}</h1>
+                        </header>
+
+                        {{#if feature_image}}
+                            <figure class="post-full-image" style="background-image: url({{feature_image}})">
+                            </figure>
+                        {{/if}}
+
+                        <section class="post-full-content">
+                            {{content}}
+                        </section>
+
+                    </article>
+                </div>
+                <div class="ticketsale column column-40" style="min-height: 400px">
+                    <h2>Buy Tickets</h2>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Ticket Type</th>
+                            <th>Price (£)</th>
+                            <th>Quantity</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Early Bird</td>
+                            <td>£100</td>
+                            <td>
+                                <select id="ageRangeField">
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Standard</td>
+                            <td>£150</td>
+                            <td>
+                                <select id="ageRangeField">
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Student</td>
+                            <td>£80</td>
+                            <td>
+                                <select id="ageRangeField">
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Special Sponsor</td>
+                            <td>£251</td>
+                            <td>
+                                <select id="ageRangeField">
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="checkout">
+                        <a class="button" href="jainism-course">Checkout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+{{/post}}
+
+{{!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs --}}
+{{#contentFor "scripts"}}
+    <script>
+        $(function () {
+            var $postContent = $(".post-full-content");
+            $postContent.fitVids();
+        });
+    </script>
+{{/contentFor}}
