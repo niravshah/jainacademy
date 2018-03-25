@@ -141,7 +141,7 @@ p.bold {
 }
 
 .eventpage .ticketsale {
-    padding: 40px 20px;
+    padding: 40px 20px 40px 40px;
 }
 
 .eventpage .ticketsale h2 {
@@ -162,4 +162,23 @@ p.bold {
 .eventpage .checkout {
     margin: 40px 0px;
     text-align: right;
+}
+
+.eventpage .post-full-content {
+    padding: 0px;
+}
+
+.eventpage .post-full-content p {
+    text-align: justify;
+}
+
+.eventpage .post-full-header {
+    padding: 5vw 0vw 3vw;
+    font-family: 'Bitter', serif;
+    font-weight: 500;
+    font-size: 2em;
+}
+
+.eventpage .post-full-content img {
+    max-width: 600px;
 }
