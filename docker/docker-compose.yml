@@ -30,3 +30,16 @@ services:
       - ./cc_blog/content:/var/lib/ghost/content
     depends_on:
       - mysql
+  website:
+    image: 'bitnami/node:latest'
+    restart: 'always'
+    command: "sh -c 'npm install && npm start'"
+    ports:
+      - 3000:3000
+    environment:
+      - MAILGUN_DOMAIN=${MAILGUN_DOMAIN}
+      - MAILGUN_APIKEY=${MAILGUN_APIKEY}
+    volumes:
+      - ./cc_website:/app
+    depends_on:
+      - mysql

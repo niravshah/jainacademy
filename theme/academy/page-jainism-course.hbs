@@ -34,78 +34,96 @@ into the {body} of the default.hbs template --}}
 
                     </article>
                 </div>
-                <div class="ticketsale column column-40" style="min-height: 400px">
-                    <h2>Buy Tickets</h2>
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>Ticket Type</th>
-                            <th>Price (£)</th>
-                            <th>Quantity</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>Early Bird</td>
-                            <td>£100</td>
-                            <td>
-                                <select id="ageRangeField">
-                                    <option value="0">0</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Standard</td>
-                            <td>£150</td>
-                            <td>
-                                <select id="ageRangeField">
-                                    <option value="0">0</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                </select>
-                            </td>
-                        </tr>
+                <div class="column column-40">
+                    <div class="ticketsale" style="    border-radius: 5px;
+    box-shadow: rgba(39,44,49,0.06) 8px 14px 38px, rgba(39, 44, 49, 0.03) 1px 3px 8px;
+    transition: all 0.5s ease;">
+                        <h2>Buy Tickets</h2>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Ticket Type</th>
+                                <th>Price (£)</th>
+                                <th>Quantity</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Early Bird</td>
+                                <td>£100</td>
+                                <td>
+                                    <select id="ageRangeField">
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Standard</td>
+                                <td>£150</td>
+                                <td>
+                                    <select id="ageRangeField">
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </td>
+                            </tr>
 
-                        <tr>
-                            <td>Student</td>
-                            <td>£80</td>
-                            <td>
-                                <select id="ageRangeField">
-                                    <option value="0">0</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Special Sponsor</td>
-                            <td>£251</td>
-                            <td>
-                                <select id="ageRangeField">
-                                    <option value="0">0</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                </select>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <div class="checkout">
-                        <a class="button" href="jainism-course">Checkout</a>
+                            <tr>
+                                <td>Student</td>
+                                <td>£80</td>
+                                <td>
+                                    <select id="ageRangeField">
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Special Sponsor</td>
+                                <td>£251</td>
+                                <td>
+                                    <select id="ageRangeField">
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="checkout">
+                            <!--<a class="button" href="jainism-course">Secure Checkout</a>-->
+
+                            <form action="your-server-side-code" method="POST">
+                                <script
+                                        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                        data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
+                                        data-amount="999"
+                                        data-name="Stripe.com"
+                                        data-description="Widget"
+                                        data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                                        data-locale="auto"
+                                        data-zip-code="true">
+                                </script>
+                            </form>
+
+                        </div>
                     </div>
                 </div>
             </div>
