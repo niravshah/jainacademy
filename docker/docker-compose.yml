@@ -42,4 +42,26 @@ services:
     volumes:
       - ./cc_website:/app
     depends_on:
-      - mysql
+      - mongodb
+    links:
+      - mongodb:mongodb
+  mongodb:
+    image: 'bitnami/mongodb:latest'
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGODB_ROOT_PASSWORD=${MONGODB_ROOT_PASSWORD}
+      - MONGODB_USERNAME=${MONGODB_USERNAME}
+      - MONGODB_PASSWORD=${MONGODB_PASSWORD}
+      - MONGODB_DATABASE=${MONGODB_DATABASE}
+    volumes:
+      - ./cc_mongo:/bitnami
+  nginx:
+    image: 'bitnami/nginx:latest'
+    ports:
+      - '80:8080'
+      - '443:8443'
+    volumes:
+      - ./cc_nginx:/bitnami
+    depends_on:
+      - website
