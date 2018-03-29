@@ -9,6 +9,7 @@ var env = process.env.NODE_ENV || 'dev';
 var config = require('./config')[env];
 console.log("ENV:", env);
 
+var exphbs  = require('express-handlebars');
 
 var app = express();
 var index = require('./routes/index');
@@ -21,7 +22,9 @@ mongoose.connect(config.mongoUrl)
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+
+app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

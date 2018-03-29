@@ -10,11 +10,22 @@ services:
       - MYSQL_DATABASE=blog_db
       - MYSQL_USER=blog_user
       - MYSQL_PASSWORD=${BLOG_PASSWORD}
+  mongodb:
+      image: 'bitnami/mongodb:latest'
+      expose:
+        - 27017
+      environment:
+        - MONGODB_ROOT_PASSWORD=${MONGODB_ROOT_PASSWORD}
+        - MONGODB_USERNAME=${MONGODB_USERNAME}
+        - MONGODB_PASSWORD=${MONGODB_PASSWORD}
+        - MONGODB_DATABASE=${MONGODB_DATABASE}
+      volumes:
+        - ./cc_mongo:/bitnami
   blog:
     image: 'ghost:1-alpine'
     restart: 'always'
     ports:
-      - 8080:2368
+      - '2368:2368'
     environment:
       database__client: mysql
       database__connection__host: mysql
@@ -35,7 +46,7 @@ services:
     restart: 'always'
     command: "sh -c 'npm install && npm start'"
     ports:
-      - 3000:3000
+      - '3000:3000'
     environment:
       - MAILGUN_DOMAIN=${MAILGUN_DOMAIN}
       - MAILGUN_APIKEY=${MAILGUN_APIKEY}
@@ -45,23 +56,3 @@ services:
       - mongodb
     links:
       - mongodb:mongodb
-  mongodb:
-    image: 'bitnami/mongodb:latest'
-    ports:
-      - "27017:27017"
-    environment:
-      - MONGODB_ROOT_PASSWORD=${MONGODB_ROOT_PASSWORD}
-      - MONGODB_USERNAME=${MONGODB_USERNAME}
-      - MONGODB_PASSWORD=${MONGODB_PASSWORD}
-      - MONGODB_DATABASE=${MONGODB_DATABASE}
-    volumes:
-      - ./cc_mongo:/bitnami
-  nginx:
-    image: 'bitnami/nginx:latest'
-    ports:
-      - '80:8080'
-      - '443:8443'
-    volumes:
-      - ./cc_nginx:/bitnami
-    depends_on:
-      - website
