@@ -1,6 +1,7 @@
 $(function () {
     $('#datetimepicker1').datetimepicker();
     $('[data-toggle="tooltip"]').tooltip();
+    $('#payment-form').validator();
 
 // Create a Stripe client.
     var stripe = Stripe('pk_test_6pRNASCoBOKtIshFeQd4XMUh');
