@@ -9,23 +9,24 @@ var env = process.env.NODE_ENV || 'dev';
 var config = require('./config')[env];
 console.log("ENV:", env);
 
-var hbs  = require('express-hbs');
+var hbs = require('express-hbs');
 
 var app = express();
 var index = require('./routes/index');
 
-var mongoose = require('mongoose');
-mongoose.connect(config.mongoUrl)
-    .then(() => console.log('mongo connection successful'))
-    .catch((err) => console.error(err));
+/*var mongoose = require('mongoose');
+ mongoose.connect(config.mongoUrl)
+ .then(() => console.log('mongo connection successful'))
+ .catch((err) => console.error(err));*/
 
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.engine('hbs', hbs.express4({
-    defaultLayout: __dirname + '/views/main'
+    defaultLayout: __dirname + '/views/default'
 }));
+
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
