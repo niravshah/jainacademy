@@ -6,6 +6,10 @@
     background-color: black;
 }
 
+.site-header-content {
+    padding: 2vw 4vw;
+}
+
 .site-nav-logo img {
     height: 32px;
 }
@@ -16,10 +20,6 @@
 
 .site-description {
     font-size: 2.0rem;
-}
-
-.site-header-content {
-    padding: 2vw 4vw;
 }
 
 .post-full-image {
