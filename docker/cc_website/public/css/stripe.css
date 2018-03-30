@@ -1,7 +1,4 @@
-* {
-    box-sizing: border-box;
-}
-
+/*
 blockquote,
 body,
 button,
@@ -245,7 +242,7 @@ body {
     margin: 10px;
 }
 
-/** Page-specific styles */
+!** Page-specific styles *!
 @keyframes spin {
     0% {
         transform: rotate(0deg);
@@ -662,6 +659,7 @@ footer {
     cursor: default;
     color: #6772e5;
 }
+*/
 
 .example.example2 {
     background-color: #fff;

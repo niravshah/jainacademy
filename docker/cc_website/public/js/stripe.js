@@ -217,7 +217,7 @@
         style: elementStyles,
         classes: elementClasses,
     });
-    cardNumber.mount('#example2-card-number');
+    cardNumber.mount('#card-element');
 
     var cardExpiry = elements.create('cardExpiry', {
         style: elementStyles,

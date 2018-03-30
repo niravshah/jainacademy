@@ -61,3 +61,36 @@
 .site-header-content {
     padding: 2vw 4vw;
 }
+
+.credit-card-col {
+    float: none;
+    margin: 40px auto;
+}
+
+.credit-card-box .panel-footer {
+    text-align: center;
+}
+
+.credit-card-box .panel-footer img {
+    max-width: 100px;
+    margin: 5px auto;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.form-row{
+    margin: 20px auto;
+}
+
+#card-element {
+    margin: 5px auto;
+}
+
+#card-errors {
+    text-align: center;
+    margin: 10px auto;
+    color: #ed2025;
+    font-family: 'Roboto';
+}
