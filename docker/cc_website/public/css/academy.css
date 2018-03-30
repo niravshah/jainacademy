@@ -106,3 +106,22 @@
     color: #ed2025;
     font-family: 'Roboto';
 }
+
+button {
+    background-color: #ed2025;
+    border: 0.1rem solid #ed2025;
+    border-radius: .4rem;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 1.2rem;
+    font-weight: 500;
+    height: 3.8rem;
+    letter-spacing: .1rem;
+    line-height: 3.8rem;
+    padding: 0 3.0rem;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
