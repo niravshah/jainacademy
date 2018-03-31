@@ -1,8 +1,13 @@
 $(function () {
     $('#datetimepicker1').datetimepicker();
     $('[data-toggle="tooltip"]').tooltip();
+    $('.processing').hide();
     $('#payment-form').validator().on('submit', function (e) {
+        $('.processing').show();
+        $('#payment-form').hide();
         if (e.isDefaultPrevented()) {
+            $('.processing').hide();
+            $('#payment-form').show();
             // handle the invalid form...
         } else {
             e.preventDefault();
@@ -10,6 +15,8 @@ $(function () {
                 if (result.error) {
                     var errorElement = document.getElementById('card-errors');
                     errorElement.textContent = result.error.message;
+                    $('.processing').hide();
+                    $('#payment-form').show();
                 } else {
 
                     var form = document.getElementById('payment-form');
