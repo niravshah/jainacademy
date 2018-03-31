@@ -5,6 +5,7 @@ $(function () {
         if (e.isDefaultPrevented()) {
             // handle the invalid form...
         } else {
+            e.preventDefault();
             stripe.createToken(card).then(function (result) {
                 if (result.error) {
                     var errorElement = document.getElementById('card-errors');
