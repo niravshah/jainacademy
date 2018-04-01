@@ -20,7 +20,7 @@ router.post('/issueTicket', function (req, res, next) {
     req.save(function (err, newreq) {
 
         if (err) {
-            res.status(500).json({error: err})
+            res.status(500).json({error: err, ref: ref})
         } else {
             stripe.charges.create({
                 amount: data.paymentAmount,
