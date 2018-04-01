@@ -333,3 +333,10 @@ button {
         transform: scale(0.5);
     }
 }
+
+.multiselect-selected-text {
+    text-transform: initial;
+}
+.multiselect-native-select{
+    display: block;
+}

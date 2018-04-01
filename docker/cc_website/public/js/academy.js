@@ -1,5 +1,9 @@
 $(function () {
-    $('#datetimepicker1').datetimepicker();
+    $('#ticketType').multiselect({
+        buttonWidth: '400px',
+        numberDisplayed: 1
+    });
+    $('#datetimepicker1').datetimepicker({format: 'MM/DD/YYYY'});
     $('[data-toggle="tooltip"]').tooltip();
     $('.processing').hide();
     $('#payment-form').validator().on('submit', function (e) {
@@ -8,7 +12,6 @@ $(function () {
         if (e.isDefaultPrevented()) {
             $('.processing').hide();
             $('#payment-form').show();
-            // handle the invalid form...
         } else {
             e.preventDefault();
             stripe.createToken(card).then(function (result) {

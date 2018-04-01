@@ -12,10 +12,16 @@
                     <form action="/charge" method="post" id="payment-form">
                         <div class="form-row">
                             <div class="form-group col-md-8">
-                                <label for="inputState">Ticket Type</label>
-                                <select id="inputState" class="form-control">
-                                    <option selected>Choose...</option>
-                                    <option>...</option>
+                                <label for="ticketType">Ticket Type</label>
+                                <select id="ticketType" class="form-control" multiple="multiple">
+                                    <option selected>All Days. All Sessions (£125)</option>
+                                    <option>All Days. All Sessions. Students/Reduced (£100)</option>
+                                    <option>Saturday, 25th August, 8.00am - 7.00pm (£21)</option>
+                                    <option>Sunday, 26th August, 8.00am - 7.00pm (£21)</option>
+                                    <option>Monday, 27th August, 8.00am - 7.00pm (£21)</option>
+                                    <option>Saturday, 1st September, 8.00am - 7.00pm (£21)</option>
+                                    <option>Sunday, 2nd September, 8.00am - 7.00pm (£21)</option>
+
                                 </select>
                             </div>
                             <div class="form-group col-md-4">
