@@ -40,6 +40,8 @@ $(function () {
                     $.ajax({
                         url: '/issueTicket',
                         data: getFormData(result.token.id),
+                        type: 'post',
+                        dataType: 'json',
                         success: function (result, status, xhr) {
                             $('.processing').hide();
                             $('.processing-success').show();
