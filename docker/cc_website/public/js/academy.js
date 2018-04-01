@@ -1,4 +1,9 @@
 $(function () {
+
+    $('.processing').hide();
+    $('.processing-success').hide();
+    $('.processing-error').hide();
+
     $('#ticketType').multiselect({
         buttonWidth: '400px',
         numberDisplayed: 1,
@@ -16,7 +21,7 @@ $(function () {
     ;
     $('#datetimepicker1').datetimepicker({format: 'MM/DD/YYYY'});
     $('[data-toggle="tooltip"]').tooltip();
-    $('.processing').hide();
+
     $('#payment-form').validator().on('submit', function (e) {
         $('.processing').show();
         $('#payment-form').hide();
@@ -32,16 +37,18 @@ $(function () {
                     $('.processing').hide();
                     $('#payment-form').show();
                 } else {
-
-                    var form = document.getElementById('payment-form');
-                    var hiddenInput = document.createElement('input');
-                    hiddenInput.setAttribute('type', 'hidden');
-                    hiddenInput.setAttribute('name', 'stripeToken');
-                    hiddenInput.setAttribute('value', result.token.id);
-                    form.appendChild(hiddenInput);
-
-                    // Submit the form
-                    form.submit();
+                    $.ajax({
+                        url: '/issueTicket',
+                        data: getFormData(result.token.id),
+                        success: function (result, status, xhr) {
+                            $('.processing').hide();
+                            $('.processing-success').show();
+                        },
+                        error: function (xhr, status, error) {
+                            $('.processing').hide();
+                            $('.processing-error').show();
+                        }
+                    })
                 }
             });
         }
@@ -81,22 +88,44 @@ $(function () {
     });
 
     function setPaymentValue() {
-        var tickets = $('#ticketType option:selected')
+
+        $('#submitPaymentBtn').html('Submit Payment - £' + getPaymentAmount())
+
+    }
+
+    function getPaymentAmount() {
+        var tickets = $('#ticketType option:selected');
         var totalCost = 0;
-        var selected = [];
-        var ticks = [];
         $(tickets).each(function (idx, ticket) {
             totalCost += parseInt($(this).val());
-            selected.push([$(this).val()]);
-            ticks.push([$(this).text()]);
         });
 
         var numOfTicks = parseInt($('#totalTicketNums').val());
         var donationAmt = parseInt($('#inputDonation').val());
-        var paymentAmount = totalCost * numOfTicks + donationAmt;
+        return totalCost * numOfTicks + donationAmt;
+    }
 
-        $('#submitPaymentBtn').html('Submit Payment - £' + paymentAmount)
+    function getSelectedTickets() {
+        var tickets = $('#ticketType option:selected');
+        var ticks = {};
+        $(tickets).each(function (idx, ticket) {
+            ticks[$(this).text()] = parseInt($(this).val());
+        });
+        return ticks;
+    }
 
+    function getFormData(stripeToken) {
+        var data = {};
+        data['stripeToken'] = stripeToken;
+        data['totalTicketNums'] = $('#totalTicketNums').val();
+        data['inputFirstName'] = $('#inputFirstName').val();
+        data['inputLastName'] = $('#inputLastName').val();
+        data['inputEmail'] = $('#inputEmail').val();
+        data['inputBirthDate'] = $("#datetimepicker1").find("input").val();
+        data['inputDonation'] = $('#inputDonation').val();
+        data['ticket'] = getSelectedTickets();
+        data['paymentAmount'] = getPaymentAmount();
+        return data;
     }
 
 });
