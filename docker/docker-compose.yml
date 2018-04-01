@@ -50,6 +50,7 @@ services:
     environment:
       - MAILGUN_DOMAIN=${MAILGUN_DOMAIN}
       - MAILGUN_APIKEY=${MAILGUN_APIKEY}
+      - STRIPE_KEY=${STRIPE_KEY}
     volumes:
       - ./cc_website:/app
     depends_on:
