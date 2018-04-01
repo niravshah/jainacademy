@@ -27,7 +27,7 @@ router.post('/issueTicket', function (req, res, next) {
                 amount: data.paymentAmount,
                 currency: "gbp",
                 description: ref,
-                source: data.stripeToken,
+                source: data.stripeToken.id,
             }, function (err, charge) {
                 if (err) {
                     console.log(err);
@@ -36,7 +36,7 @@ router.post('/issueTicket', function (req, res, next) {
                     //console.log(charge);
 
                     newreq.status = "PAYMENT_PROCESSED";
-                    newreq.charge = charge;
+                    newreq.stripeCharge = charge;
                     newreq.save(function (err, saved) {
                         if (err) {
                             res.status(500).json({error: err})

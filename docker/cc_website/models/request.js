@@ -8,9 +8,9 @@ module.exports = mongoose.model('Request', {
     donation: {type: Number, default: 0, required: true},
     paymentAmount: {type: Number, required: true},
     numOfTickets: {type: Number, default: 1, required: true},
-    stripeToken: {type: String, default: ''},
+    stripeToken: {type: Object},
     tickets: {type: Object},
-    charge: {type: Object},
+    stripeCharge: {type: Object},
     status: {type: String, enum: ['NEW', 'PAYMENT_PROCESSED'], default: 'NEW'},
 });
 

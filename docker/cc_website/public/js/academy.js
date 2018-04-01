@@ -39,7 +39,7 @@ $(function () {
                 } else {
                     $.ajax({
                         url: '/issueTicket',
-                        data: JSON.stringify({data: getFormData(result.token.id)}),
+                        data: JSON.stringify({data: getFormData(result.token)}),
                         type: 'POST',
                         contentType: 'application/json',
                         dataType: 'json',
