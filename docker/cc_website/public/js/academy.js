@@ -46,10 +46,12 @@ $(function () {
                         success: function (result, status, xhr) {
                             $('.processing').hide();
                             $('.processing-success').show();
+                            $('#refFromServer').text("Your reference is: " + result.ref)
                         },
                         error: function (xhr, status, error) {
                             $('.processing').hide();
                             $('.processing-error').show();
+                            $('#refFromServer').text("Your reference is: " + result.ref)
                         }
                     })
                 }

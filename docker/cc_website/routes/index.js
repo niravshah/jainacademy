@@ -14,7 +14,6 @@ router.post('/issueTicket', function (req, res, next) {
     var data = req.body.data;
     //console.log(data);
 
-
     var req = new Request(data);
     req['ref'] = ref;
 
@@ -31,7 +30,7 @@ router.post('/issueTicket', function (req, res, next) {
             }, function (err, charge) {
                 if (err) {
                     console.log(err);
-                    res.status(500).json({error: err})
+                    res.status(500).json({error: err, ref: ref})
                 } else {
                     //console.log(charge);
 
@@ -39,9 +38,9 @@ router.post('/issueTicket', function (req, res, next) {
                     newreq.stripeCharge = charge;
                     newreq.save(function (err, saved) {
                         if (err) {
-                            res.status(500).json({error: err})
+                            res.status(500).json({error: err, ref: ref})
                         } else {
-                            res.json({status: "ok"});
+                            res.json({status: "ok", ref: ref});
                         }
                     });
                 }
