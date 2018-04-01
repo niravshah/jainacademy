@@ -39,8 +39,9 @@ $(function () {
                 } else {
                     $.ajax({
                         url: '/issueTicket',
-                        data: getFormData(result.token.id),
-                        type: 'post',
+                        data: JSON.stringify({data: getFormData(result.token.id)}),
+                        type: 'POST',
+                        contentType: 'application/json',
                         dataType: 'json',
                         success: function (result, status, xhr) {
                             $('.processing').hide();
@@ -111,7 +112,7 @@ $(function () {
         var tickets = $('#ticketType option:selected');
         var ticks = {};
         $(tickets).each(function (idx, ticket) {
-            ticks[$(this).text()] = parseInt($(this).val());
+            ticks[parseInt($(this).val())] = $(this).text();
         });
         return ticks;
     }
@@ -119,13 +120,13 @@ $(function () {
     function getFormData(stripeToken) {
         var data = {};
         data['stripeToken'] = stripeToken;
-        data['totalTicketNums'] = $('#totalTicketNums').val();
+        data['numOfTickets'] = $('#totalTicketNums').val();
         data['firstName'] = $('#inputFirstName').val();
         data['lastName'] = $('#inputLastName').val();
         data['email'] = $('#inputEmail').val();
         data['birthDate'] = $("#datetimepicker1").find("input").val();
         data['donation'] = $('#inputDonation').val();
-        data['ticket'] = getSelectedTickets();
+        data['tickets'] = getSelectedTickets();
         data['paymentAmount'] = getPaymentAmount();
         return data;
     }

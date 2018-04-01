@@ -7,9 +7,10 @@ module.exports = mongoose.model('User', {
     birthDate: {type: String},
     donation: {type: Number, default: 0, required: true},
     paymentAmount: {type: Number, required: true},
-    totalTicketNums: {type: Number, default: 1, required: true},
+    numOfTickets: {type: Number, default: 1, required: true},
     stripeToken: {type: String, default: ''},
-    tickets:{ type : Array , default : [] }
+    tickets: {type: Object},
+    status: {type: String, enum: ['NEW', 'PAYMENT_PROCESSED'], default: 'NEW'},
 });
 
 
