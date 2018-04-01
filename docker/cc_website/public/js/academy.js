@@ -120,11 +120,11 @@ $(function () {
         var data = {};
         data['stripeToken'] = stripeToken;
         data['totalTicketNums'] = $('#totalTicketNums').val();
-        data['inputFirstName'] = $('#inputFirstName').val();
-        data['inputLastName'] = $('#inputLastName').val();
-        data['inputEmail'] = $('#inputEmail').val();
-        data['inputBirthDate'] = $("#datetimepicker1").find("input").val();
-        data['inputDonation'] = $('#inputDonation').val();
+        data['firstName'] = $('#inputFirstName').val();
+        data['lastName'] = $('#inputLastName').val();
+        data['email'] = $('#inputEmail').val();
+        data['birthDate'] = $("#datetimepicker1").find("input").val();
+        data['donation'] = $('#inputDonation').val();
         data['ticket'] = getSelectedTickets();
         data['paymentAmount'] = getPaymentAmount();
         return data;
