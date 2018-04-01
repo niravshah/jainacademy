@@ -1,8 +1,19 @@
 $(function () {
     $('#ticketType').multiselect({
         buttonWidth: '400px',
-        numberDisplayed: 1
+        numberDisplayed: 1,
+        onInitialized: function (select, container) {
+            setPaymentValue();
+        },
+        onChange: function (option, checked, select) {
+            setPaymentValue();
+        }
     });
+
+    $('#totalTicketNums').on('change', function () {
+        setPaymentValue();
+    })
+    ;
     $('#datetimepicker1').datetimepicker({format: 'MM/DD/YYYY'});
     $('[data-toggle="tooltip"]').tooltip();
     $('.processing').hide();
@@ -68,5 +79,24 @@ $(function () {
             displayError.textContent = '';
         }
     });
+
+    function setPaymentValue() {
+        var tickets = $('#ticketType option:selected')
+        var totalCost = 0;
+        var selected = [];
+        var ticks = [];
+        $(tickets).each(function (idx, ticket) {
+            totalCost += parseInt($(this).val());
+            selected.push([$(this).val()]);
+            ticks.push([$(this).text()]);
+        });
+
+        var numOfTicks = parseInt($('#totalTicketNums').val());
+        var donationAmt = parseInt($('#inputDonation').val());
+        var paymentAmount = totalCost * numOfTicks + donationAmt;
+
+        $('#submitPaymentBtn').html('Submit Payment - £' + paymentAmount)
+
+    }
 
 });

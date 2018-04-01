@@ -14,24 +14,24 @@
                             <div class="form-group col-md-8">
                                 <label for="ticketType">Ticket Type</label>
                                 <select id="ticketType" class="form-control" multiple="multiple">
-                                    <option selected>All Days. All Sessions (£125)</option>
-                                    <option>All Days. All Sessions. Students/Reduced (£100)</option>
-                                    <option>Saturday, 25th August, 8.00am - 7.00pm (£21)</option>
-                                    <option>Sunday, 26th August, 8.00am - 7.00pm (£21)</option>
-                                    <option>Monday, 27th August, 8.00am - 7.00pm (£21)</option>
-                                    <option>Saturday, 1st September, 8.00am - 7.00pm (£21)</option>
-                                    <option>Sunday, 2nd September, 8.00am - 7.00pm (£21)</option>
+                                    <option value="125" selected>All Days. All Sessions (£125)</option>
+                                    <option value="100">All Days. All Sessions. Students/Reduced (£100)</option>
+                                    <option value="21">Saturday, 25th August, 8.00am - 7.00pm (£21)</option>
+                                    <option value="21">Sunday, 26th August, 8.00am - 7.00pm (£21)</option>
+                                    <option value="21">Monday, 27th August, 8.00am - 7.00pm (£21)</option>
+                                    <option value="21">Saturday, 1st September, 8.00am - 7.00pm (£21)</option>
+                                    <option value="21">Sunday, 2nd September, 8.00am - 7.00pm (£21)</option>
 
                                 </select>
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="inputZip">Num</label>
-                                <select id="inputZip" class="form-control">
-                                    <option selected>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
+                                <label for="totalTicketNums">Num</label>
+                                <select id="totalTicketNums" class="form-control">
+                                    <option value="1" selected>1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
                                 </select>
                             </div>
                         </div>
@@ -82,20 +82,20 @@
                                         class="glyphicon glyphicon-question-sign"></span>
                                 </a>
                                 <select id="inputDonation" class="form-control">
-                                    <option>£0</option>
-                                    <option>£5</option>
-                                    <option selected>£10</option>
-                                    <option>£15</option>
-                                    <option>£20</option>
-                                    <option>£25</option>
-                                    <option>£30</option>
-                                    <option>£50</option>
+                                    <option value="0">£0</option>
+                                    <option value="5">£5</option>
+                                    <option value="10" selected>£10</option>
+                                    <option value="15">£15</option>
+                                    <option value="20">£20</option>
+                                    <option value="25">£25</option>
+                                    <option value="30">£30</option>
+                                    <option value="50">£50</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-row col-md-12 align-center">
                             <div class="form-group">
-                                <button>Submit Payment</button>
+                                <button id="submitPaymentBtn">Submit Payment</button>
                             </div>
                         </div>
                     </form>
