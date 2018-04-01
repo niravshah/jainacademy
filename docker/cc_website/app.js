@@ -12,10 +12,12 @@ var hbs = require('express-hbs');
 var app = express();
 var index = require('./routes/index');
 
-/*var mongoose = require('mongoose');
- mongoose.connect(config.mongoUrl)
- .then(() => console.log('mongo connection successful'))
- .catch((err) => console.error(err));*/
+
+var mongoose = require('mongoose');
+
+mongoose.connect(process.env.MONGODB_URL + process.env.MONGODB_DATABASE)
+    .then(() => console.log('mongo connection successful'))
+    .catch((err) => console.error(err));
 
 
 // view engine setup
