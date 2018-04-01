@@ -12,7 +12,7 @@ router.post('/issueTicket', function (req, res, next) {
 
     var ref = shortid.generate();
     var data = req.body.data;
-    console.log(data);
+    //console.log(data);
 
 
     var req = new Request(data);
@@ -27,13 +27,13 @@ router.post('/issueTicket', function (req, res, next) {
                 amount: data.paymentAmount,
                 currency: "gbp",
                 description: ref,
-                source: token,
+                source: data.stripeToken,
             }, function (err, charge) {
                 if (err) {
                     console.log(err);
                     res.status(500).json({error: err})
                 } else {
-                    console.log(charge);
+                    //console.log(charge);
 
                     newreq.status = "PAYMENT_PROCESSED";
                     newreq.charge = charge;

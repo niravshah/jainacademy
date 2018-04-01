@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-module.exports = mongoose.model('User', {
+module.exports = mongoose.model('Request', {
     ref: {type: String, required: true},
     firstName: {type: String, required: true},
     lastName: {type: String, required: true},
@@ -10,6 +10,7 @@ module.exports = mongoose.model('User', {
     numOfTickets: {type: Number, default: 1, required: true},
     stripeToken: {type: String, default: ''},
     tickets: {type: Object},
+    charge: {type: Object},
     status: {type: String, enum: ['NEW', 'PAYMENT_PROCESSED'], default: 'NEW'},
 });
 
