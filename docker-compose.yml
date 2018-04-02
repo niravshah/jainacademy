@@ -49,6 +49,7 @@ services:
     ports:
       - '3000:3000'
     environment:
+      - NODE_ENV=${NODE_ENV}
       - MAILGUN_DOMAIN=${MAILGUN_DOMAIN}
       - MAILGUN_APIKEY=${MAILGUN_APIKEY}
       - STRIPE_KEY=${STRIPE_KEY}
