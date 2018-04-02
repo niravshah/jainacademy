@@ -106,7 +106,7 @@ emailQueue.process(function (job, done) {
     nodemailerMailgun.sendMail({
         from: process.env.MAILGUN_FROM_EMAIL,
         to: job.data.data.email,
-        subject: 'Your Tickets from Jain Academy',
+        subject: 'Your Tickets from Jain Academy: ' + job.data.ref,
         'h:Reply-To': process.env.MAILGUN_FROM_EMAIL,
         text: 'Your payment has been successfully received. Your ticket reference number is: ' + job.data.ref
     }, function (err, info) {
