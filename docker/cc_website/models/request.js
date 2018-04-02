@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 module.exports = mongoose.model('Request', {
+    eventId: {type: String},
     ref: {type: String, required: true},
     firstName: {type: String, required: true},
     lastName: {type: String, required: true},

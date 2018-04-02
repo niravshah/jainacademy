@@ -38,7 +38,7 @@ $(function () {
                     $('#payment-form').show();
                 } else {
                     $.ajax({
-                        url: '/issueTicket',
+                        url: '/1/tickets/issue',
                         data: JSON.stringify({data: getFormData(result.token)}),
                         type: 'POST',
                         contentType: 'application/json',
@@ -46,7 +46,7 @@ $(function () {
                         success: function (result, status, xhr) {
                             $('.processing').hide();
                             $('.processing-success').show();
-                            $('#refFromServer').text("Your reference is: " + result.ref)
+                            $('#refFromServer').text("Your ticket reference is: " + result.ref)
                         },
                         error: function (xhr, status, error) {
                             $('.processing').hide();

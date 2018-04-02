@@ -20,22 +20,24 @@ router.get('/', function (req, res, next) {
     res.render('index', {title: 'Jain Academy Payments', payment_title: "Fundamentals of Jainism : August 2018"});
 });
 
-router.post('/issueTicket', function (req, res, next) {
+router.post('/:eventId/tickets/issue', function (req, res, next) {
 
     var ref = shortid.generate();
+    var eventId = req.params.eventId;
     var data = req.body.data;
 
-    logger.info({ref: ref, status: 'NEW', data: data});
+    logger.info({ref: ref, eventId: eventId, status: 'NEW_REQUEST', data: data});
 
     var req = new Request(data);
     req['ref'] = ref;
+    req['eventId'] = eventId;
 
     req.save(function (err, newreq) {
         if (err) {
-            logger.info({ref: ref, status: 'ERROR_SAVED_NEW', err: err, data: null});
+            logger.info({ref: ref, eventId: eventId, status: 'ERROR_SAVED_NEW', err: err, data: null});
             res.status(500).json({error: err, ref: ref})
         } else {
-            logger.info({ref: ref, status: 'SAVED_NEW'});
+            logger.info({ref: ref, eventId: eventId, status: 'SAVED_NEW'});
             stripe.charges.create({
                 amount: data.paymentAmount,
                 currency: "gbp",
@@ -43,18 +45,24 @@ router.post('/issueTicket', function (req, res, next) {
                 source: data.stripeToken.id,
             }, function (err, charge) {
                 if (err) {
-                    logger.info({ref: ref, status: 'ERROR_STRIPE_CHARGE', err: err, data: null});
+                    logger.info({ref: ref, eventId: eventId, status: 'ERROR_STRIPE_CHARGE', err: err, data: null});
                     res.status(500).json({error: err, ref: ref})
                 } else {
-                    logger.info({ref: ref, status: 'PAYMENT_PROCESSED', data: charge, err: null});
+                    logger.info({ref: ref, eventId: eventId, status: 'PAYMENT_PROCESSED', data: charge, err: null});
                     newreq.status = "PAYMENT_PROCESSED";
                     newreq.stripeCharge = charge;
                     newreq.save(function (err, saved) {
                         if (err) {
-                            logger.info({ref: ref, status: 'ERROR_CHARGE_UPDATE', data: null, err: err});
+                            logger.info({
+                                ref: ref,
+                                eventId: eventId,
+                                status: 'ERROR_CHARGE_UPDATE',
+                                data: null,
+                                err: err
+                            });
                             res.status(500).json({error: err, ref: ref})
                         } else {
-                            logger.info({ref: ref, status: 'CHARGE_UPDATED', data: null, err: null});
+                            logger.info({ref: ref, eventId: eventId, status: 'CHARGE_UPDATED', data: null, err: null});
                             res.json({status: "ok", ref: ref});
                         }
                     });
