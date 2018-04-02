@@ -14,32 +14,31 @@ into the {body} of the default.hbs template --}}
 
     <main id="site-main" class="site-main outer" role="main">
 
-        <div class="eventpage container">
-            <div class="row">
-                <div class="column column-60">
-                    <article class="post-full {{post_class}} {{#unless feature_image}}no-image{{/unless}}">
+        <div class="eventpage pure-g">
+            <div class="pure-u-1-1 pure-u-md-3-4">
+                <article class="post-full {{post_class}} {{#unless feature_image}}no-image{{/unless}}">
 
-                        <header class="post-full-header">
-                            <h1 class="post-full-title">{{title}}</h1>
-                        </header>
+                    <header class="post-full-header">
+                        <h1 class="post-full-title">{{title}}</h1>
+                    </header>
 
-                        {{#if feature_image}}
-                            <figure class="post-full-image" style="background-image: url({{feature_image}})">
-                            </figure>
-                        {{/if}}
+                    {{#if feature_image}}
+                        <figure class="post-full-image" style="background-image: url({{feature_image}})">
+                        </figure>
+                    {{/if}}
 
-                        <section class="post-full-content">
-                            {{content}}
-                        </section>
+                    <section class="post-full-content">
+                        {{content}}
+                    </section>
 
-                    </article>
-                </div>
-                <div class="column column-40">
-                    <div class="ticketsale">
-                        <a class="button btn100" href="/tickets/jainism-course-aug2018/tickets">Buy Tickets</a>
-                    </div>
+                </article>
+            </div>
+            <div class="pure-u-1-1 pure-u-md-1-4">
+                <div class="ticketsale">
+                    <a class="button btn100 btn-red" href="/tickets/jainism-course-aug2018/tickets">Buy Tickets</a>
                 </div>
             </div>
+
         </div>
 
     </main>
