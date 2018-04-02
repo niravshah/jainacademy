@@ -104,7 +104,7 @@ emailQueue.process(function (job, done) {
     logger.info({ref: job.data.ref, eventId: job.data.eventId, status: 'EMAIL_REQUEST', data: job.data});
 
     nodemailerMailgun.sendMail({
-        from: 'info@blog.cryptochains.in',
+        from: process.env.MAILGUN_FROM_EMAIL,
         to: job.data.data.email,
         subject: 'Your Tickets from Jain Academy',
         'h:Reply-To': 'info@mail.cryptochains.in',
