@@ -23,6 +23,10 @@ $(function () {
     $('[data-toggle="tooltip"]').tooltip();
 
     $('#payment-form').validator().on('submit', function (e) {
+
+        $form = $(this);
+        var url = $form.attr('action');
+
         $('.processing').show();
         $('#payment-form').hide();
         if (e.isDefaultPrevented()) {
@@ -38,7 +42,7 @@ $(function () {
                     $('#payment-form').show();
                 } else {
                     $.ajax({
-                        url: '/tickets/1/tickets/issue',
+                        url: url,
                         data: JSON.stringify({data: getFormData(result.token)}),
                         type: 'POST',
                         contentType: 'application/json',
