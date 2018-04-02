@@ -11,7 +11,7 @@
                 <div class="panel-body">
                     <form action="{{form_url}}" method="post" id="payment-form">
                         <div class="form-row">
-                            <div class="form-group col-md-8">
+                            <div class="form-group col-md-8 col-xs-12">
                                 <label for="ticketType">Ticket Type</label>
                                 <select id="ticketType" class="form-control" multiple="multiple">
                                     <option value="125" selected>All Days. All Sessions (£125)</option>
@@ -24,8 +24,8 @@
 
                                 </select>
                             </div>
-                            <div class="form-group col-md-4">
-                                <label for="totalTicketNums">Num</label>
+                            <div class="form-group col-md-4 col-xs-12">
+                                <label for="totalTicketNums">Num of Tickets</label>
                                 <select id="totalTicketNums" class="form-control">
                                     <option value="1" selected>1</option>
                                     <option value="2">2</option>
@@ -37,24 +37,24 @@
                         </div>
 
                         <div class="form-row">
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-6 col-xs-12">
                                 <label for="inputFirstName">First Name</label>
                                 <input type="text" class="form-control" id="inputFirstName" placeholder="First Name"
                                        required>
                                 <div class="help-block with-errors"></div>
                             </div>
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-6 col-xs-12">
                                 <label for="inputLastName">Last Name</label>
                                 <input type="text" class="form-control" id="inputLastName" placeholder="Last Name">
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group col-md-8">
+                            <div class="form-group col-md-8 col-xs-12">
                                 <label for="inputEmail">Email</label>
                                 <input type="email" class="form-control" id="inputEmail" placeholder="Email" required>
                                 <div class="help-block with-errors"></div>
                             </div>
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-4 col-xs-12">
                                 <label for="datetimepicker1">Birth Date</label>
                                 <div class='input-group date' id='datetimepicker1'>
                                     <input type='text' class="form-control"/>
@@ -65,7 +65,7 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group col-md-12">
+                            <div class="form-group col-md-12 col-xs-12">
                                 <label for="card-element">
                                     Credit or Debit Card Details
                                 </label>
@@ -75,7 +75,7 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group col-md-12">
+                            <div class="form-group col-md-12 col-xs-12">
                                 <label for="inputDonation">Add a Donation</label>
                                 <a href="#" data-toggle="tooltip" data-placement="right"
                                    title="We are operating this course at a loss and would appreciate any donation you can give"> <span
@@ -93,7 +93,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-row col-md-12 align-center">
+                        <div class="form-row col-md-12 col-xs-12 align-center">
                             <div class="form-group">
                                 <button id="submitPaymentBtn">Submit Payment</button>
                             </div>
@@ -103,7 +103,8 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="sk-circle">
-                                    <img class="sk-child waiting-logo" src="/tickets/img/logo-sq.png" alt="Jain Academy"/>
+                                    <img class="sk-child waiting-logo" src="/tickets/img/logo-sq.png"
+                                         alt="Jain Academy"/>
                                     <div class="sk-circle1 sk-child"></div>
                                     <div class="sk-circle2 sk-child"></div>
                                     <div class="sk-circle3 sk-child"></div>

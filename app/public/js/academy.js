@@ -5,7 +5,6 @@ $(function () {
     $('.processing-error').hide();
 
     $('#ticketType').multiselect({
-        buttonWidth: '400px',
         numberDisplayed: 1,
         onInitialized: function (select, container) {
             setPaymentValue();
