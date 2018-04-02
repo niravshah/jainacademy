@@ -55,9 +55,20 @@ services:
       - STRIPE_KEY=${STRIPE_KEY}
       - MONGODB_URL=${MONGODB_URL}
       - MONGODB_DATABASE=${MONGODB_DATABASE}
+      - REDIS_URL=${REDIS_URL}
     volumes:
       - ./app:/app
     depends_on:
       - mongodb
+      - redis
     links:
       - mongodb:mongodb
+      - redis:redis
+  redis:
+    image: 'redis:latest'
+    restart: 'always'
+    ports:
+      - '6379:6379'
+    volumes:
+      - ./docker/cc_redis:/data
+

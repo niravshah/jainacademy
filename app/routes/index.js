@@ -3,6 +3,13 @@ var router = express.Router();
 var stripe = require("stripe")(process.env.STRIPE_KEY);
 var shortid = require('shortid');
 var Request = require('../models/request');
+var Queue = require('bull');
+var emailQueue = new Queue('send ticket email', process.env.REDIS_URL);
+
+var nodemailer = require('nodemailer');
+var mg = require('nodemailer-mailgun-transport');
+var auth = {auth: {api_key: process.env.MAILGUN_APIKEY, domain: process.env.MAILGUN_DOMAIN}};
+var nodemailerMailgun = nodemailer.createTransport(mg(auth));
 
 var bunyan = require('bunyan');
 var logger = bunyan.createLogger({
@@ -35,12 +42,11 @@ router.post('/:eventId/tickets/issue', function (req, res, next) {
     var ref = shortid.generate();
     var eventId = req.params.eventId;
     var data = req.body.data;
+    var tickets = data.tickets;
+    var paymentAmount = 0;
 
     logger.info({ref: ref, eventId: eventId, status: 'NEW_REQUEST', data: data});
 
-    var tickets = data.tickets;
-
-    var paymentAmount = 0;
     Object.keys(tickets).forEach(function (key) {
         paymentAmount += parseInt(key);
     });
@@ -70,6 +76,8 @@ router.post('/:eventId/tickets/issue', function (req, res, next) {
                     logger.info({ref: ref, eventId: eventId, status: 'PAYMENT_PROCESSED', data: charge, err: null});
                     newreq.status = "PAYMENT_PROCESSED";
                     newreq.stripeCharge = charge;
+
+                    emailQueue.add({ref: ref, eventId: eventId, status: 'PAYMENT_PROCESSED', data: data});
                     newreq.save(function (err, saved) {
                         if (err) {
                             logger.info({
@@ -87,6 +95,30 @@ router.post('/:eventId/tickets/issue', function (req, res, next) {
                     });
                 }
             });
+        }
+    });
+});
+
+emailQueue.process(function (job, done) {
+    //console.log('New Email Job Received!', job.data);
+    logger.info({ref: job.data.ref, eventId: job.data.eventId, status: 'EMAIL_REQUEST', data: job.data});
+
+    nodemailerMailgun.sendMail({
+        from: 'info@blog.cryptochains.in',
+        to: job.data.data.email,
+        subject: 'Your Tickets from Jain Academy',
+        'h:Reply-To': 'info@mail.cryptochains.in',
+        text: 'Mailgun rocks, pow pow!'
+    }, function (err, info) {
+        if (err) {
+            logger.info({ref: job.data.ref, eventId: job.data.eventId, status: 'ERROR_EMAIL_REQUEST', data: null, err: err});
+            console.log('Error: ' + err);
+            done(err);
+        }
+        else {
+            logger.info({ref: job.data.ref, eventId: job.data.eventId, status: 'SUCCESS_EMAIL_REQUEST', data: null, err: null});
+            //console.log('Response: ' + info);
+            done();
         }
     });
 });
