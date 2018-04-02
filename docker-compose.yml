@@ -52,7 +52,7 @@ services:
       - MAILGUN_APIKEY=${MAILGUN_APIKEY}
       - STRIPE_KEY=${STRIPE_KEY}
     volumes:
-      - /app:/app
+      - ./app:/app
     depends_on:
       - mongodb
     links:
