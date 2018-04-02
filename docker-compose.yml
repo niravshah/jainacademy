@@ -51,6 +51,8 @@ services:
       - MAILGUN_DOMAIN=${MAILGUN_DOMAIN}
       - MAILGUN_APIKEY=${MAILGUN_APIKEY}
       - STRIPE_KEY=${STRIPE_KEY}
+      - MONGODB_URL=${MONGODB_URL}
+      - MONGODB_DATABASE=${MONGODB_DATABASE}
     volumes:
       - ./app:/app
     depends_on:
