@@ -9,7 +9,7 @@ var logger = bunyan.createLogger({
     name: 'jainacademy-payments',
     streams: [{
         type: 'rotating-file',
-        path: 'jaPayments.log',
+        path: 'logs/jaPayments.log',
         period: '2d',
         count: 30
     }]
