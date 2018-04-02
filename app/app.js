@@ -14,8 +14,10 @@ var index = require('./routes/index');
 
 
 var mongoose = require('mongoose');
+var url = process.env.MONGODB_URL + process.env.MONGODB_DATABASE;
+console.log("Connecting to MongoDB URL: " + url);
 
-mongoose.connect(process.env.MONGODB_URL + process.env.MONGODB_DATABASE)
+mongoose.connect(url)
     .then(() => console.log('mongo connection successful'))
     .catch((err) => console.error(err));
 
