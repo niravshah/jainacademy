@@ -107,8 +107,8 @@ emailQueue.process(function (job, done) {
         from: process.env.MAILGUN_FROM_EMAIL,
         to: job.data.data.email,
         subject: 'Your Tickets from Jain Academy',
-        'h:Reply-To': 'info@mail.cryptochains.in',
-        text: 'Mailgun rocks, pow pow!'
+        'h:Reply-To': process.env.MAILGUN_FROM_EMAIL,
+        text: 'Your payment has been successfully received. Your ticket reference number is: ' + job.data.ref
     }, function (err, info) {
         if (err) {
             logger.info({ref: job.data.ref, eventId: job.data.eventId, status: 'ERROR_EMAIL_REQUEST', data: null, err: err});
