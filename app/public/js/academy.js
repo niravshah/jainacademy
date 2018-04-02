@@ -38,7 +38,7 @@ $(function () {
                     $('#payment-form').show();
                 } else {
                     $.ajax({
-                        url: '/1/tickets/issue',
+                        url: '/tickets/1/tickets/issue',
                         data: JSON.stringify({data: getFormData(result.token)}),
                         type: 'POST',
                         contentType: 'application/json',
