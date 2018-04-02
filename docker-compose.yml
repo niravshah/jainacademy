@@ -27,6 +27,7 @@ services:
     ports:
       - '2368:2368'
     environment:
+      url: http://jainacademy.uk
       database__client: mysql
       database__connection__host: mysql
       database__connection__user: blog_user
