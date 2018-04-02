@@ -20,10 +20,6 @@ router.get('/', function (req, res, next) {
     res.render('index', {title: 'Jain Academy Payments', payment_title: "Fundamentals of Jainism : August 2018"});
 });
 
-router.get('/:eventId/tickets', function (req, res, next) {
-    res.render('index', {title: 'Jain Academy Payments', payment_title: "Fundamentals of Jainism : August 2018"});
-});
-
 router.post('/:eventId/tickets/issue', function (req, res, next) {
 
     var ref = shortid.generate();
