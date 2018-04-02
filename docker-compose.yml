@@ -4,7 +4,7 @@ services:
     image: 'mysql:5.7'
     restart: 'always'
     volumes:
-      - ./cc_mysql:/var/lib/mysql
+      - ./docker/cc_mysql:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - MYSQL_DATABASE=blog_db
@@ -20,7 +20,7 @@ services:
         - MONGODB_PASSWORD=${MONGODB_PASSWORD}
         - MONGODB_DATABASE=${MONGODB_DATABASE}
       volumes:
-        - ./cc_mongo:/bitnami
+        - ./docker/cc_mongo:/bitnami
   blog:
     image: 'ghost:1-alpine'
     restart: 'always'
@@ -38,7 +38,7 @@ services:
       mail__options__auth__user: ${MAILGUN_USER}
       mail__options__auth__pass: ${MAILGUN_PASS}
     volumes:
-      - ./cc_blog/content:/var/lib/ghost/content
+      - ./docker/cc_blog/content:/var/lib/ghost/content
     depends_on:
       - mysql
   website:
@@ -52,7 +52,7 @@ services:
       - MAILGUN_APIKEY=${MAILGUN_APIKEY}
       - STRIPE_KEY=${STRIPE_KEY}
     volumes:
-      - ../app:/app
+      - /app:/app
     depends_on:
       - mongodb
     links:

@@ -1,0 +1,8 @@
+.idea
+.env
+/docker
+/theme/academy.zip
+/app/.env
+/app/logs/*
+/app/node_modules
+/node_modules/
