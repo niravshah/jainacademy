@@ -46,7 +46,7 @@ $(function () {
                         success: function (result, status, xhr) {
                             $('.processing').hide();
                             $('.processing-success').show();
-                            $('#refFromServer').text("Your ticket reference is: " + result.ref)
+                            $('#refFromServer').text("Your ticket reference is: " + result.ref + "Please save this reference.")
                         },
                         error: function (xhr, status, error) {
                             $('.processing').hide();
