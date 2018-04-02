@@ -17,7 +17,17 @@ var logger = bunyan.createLogger({
 
 
 router.get('/:eventId/tickets', function (req, res, next) {
-    res.render('index', {title: 'Jain Academy Payments', payment_title: "Fundamentals of Jainism : August 2018", form_url:"/tickets/jainism-course-aug2018/tickets/issue"});
+
+    var form_url = "/tickets/jainism-course-aug2018/tickets/issue";
+    if (process.env.NODE_ENV == "dev") {
+        form_url = "/jainism-course-aug2018/tickets/issue";
+    }
+
+    res.render('index', {
+        title: 'Jain Academy Payments',
+        payment_title: "Fundamentals of Jainism : August 2018",
+        form_url: form_url
+    });
 });
 
 router.post('/:eventId/tickets/issue', function (req, res, next) {
@@ -27,6 +37,15 @@ router.post('/:eventId/tickets/issue', function (req, res, next) {
     var data = req.body.data;
 
     logger.info({ref: ref, eventId: eventId, status: 'NEW_REQUEST', data: data});
+
+    var tickets = data.tickets;
+
+    var paymentAmount = 0;
+    Object.keys(tickets).forEach(function (key) {
+        paymentAmount += parseInt(key);
+    });
+
+    paymentAmount = parseInt(paymentAmount) * parseInt(data.numOfTickets) + parseInt(data.donation);
 
     var req = new Request(data);
     req['ref'] = ref;
@@ -39,7 +58,7 @@ router.post('/:eventId/tickets/issue', function (req, res, next) {
         } else {
             logger.info({ref: ref, eventId: eventId, status: 'SAVED_NEW'});
             stripe.charges.create({
-                amount: data.paymentAmount,
+                amount: paymentAmount,
                 currency: "gbp",
                 description: ref,
                 source: data.stripeToken.id,

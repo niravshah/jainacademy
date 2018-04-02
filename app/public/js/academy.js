@@ -17,9 +17,10 @@ $(function () {
 
     $('#totalTicketNums').on('change', function () {
         setPaymentValue();
-    })
-    ;
-    $('#datetimepicker1').datetimepicker({format: 'MM/DD/YYYY'});
+    });
+
+    var defaultDate = moment("20000101", "YYYYMMDD");
+    $('#datetimepicker1').datetimepicker({format: 'MM/DD/YYYY', defaultDate: defaultDate});
     $('[data-toggle="tooltip"]').tooltip();
 
     $('#payment-form').validator().on('submit', function (e) {
@@ -69,7 +70,6 @@ $(function () {
     var style = {
         base: {
             color: '#32325d',
-            lineHeight: '18px',
             fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
             fontSmoothing: 'antialiased',
             fontSize: '16px',
