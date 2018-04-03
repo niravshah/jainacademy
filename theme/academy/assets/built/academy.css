@@ -157,6 +157,15 @@ p.bold {
     font-family: 'Bitter', serif;
 }
 
+.eventpage .ticketsale h3 {
+    text-align: left;
+    font-family: 'Bitter', serif;
+}
+
+.eventpage .ticketsale li {
+    text-align: left;
+}
+
 .eventpage .ticketsale td {
     padding: 1vw 0vw;
 }
