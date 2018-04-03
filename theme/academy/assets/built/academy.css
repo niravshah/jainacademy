@@ -145,9 +145,11 @@ p.bold {
 }
 
 .eventpage .ticketsale {
-    margin: 40px 10px 40px 10px;
-    padding: 40px 20px 20px 20px;
+    margin: 40px 40px 40px 10px;
+    padding: 10px;
     text-align: center;
+    z-index: 9999;
+    background-color: azure;
 }
 
 .eventpage .ticketsale h2 {
