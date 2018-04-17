@@ -18,6 +18,10 @@ $(function () {
         setPaymentValue();
     });
 
+    $('#inputDonation').on('change', function () {
+        setPaymentValue();
+    });
+
     var defaultDate = moment("20000101", "YYYYMMDD");
     $('#datetimepicker1').datetimepicker({format: 'MM/DD/YYYY', defaultDate: defaultDate});
     $('[data-toggle="tooltip"]').tooltip();
@@ -127,7 +131,7 @@ $(function () {
         data['stripeToken'] = stripeToken;
         data['numOfTickets'] = $('#totalTicketNums').val();
         data['firstName'] = $('#inputFirstName').val();
-        data['lastName'] = $('#inputLastName').val();
+        data['telNum'] = $('#inputTeleNum').val();
         data['email'] = $('#inputEmail').val();
         data['birthDate'] = $("#datetimepicker1").find("input").val();
         data['donation'] = $('#inputDonation').val();

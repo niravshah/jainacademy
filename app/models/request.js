@@ -3,7 +3,7 @@ module.exports = mongoose.model('Request', {
     eventId: {type: String},
     ref: {type: String, required: true},
     firstName: {type: String, required: true},
-    lastName: {type: String, required: true},
+    telNum: {type: String, required: true},
     email: {type: String, required: true},
     birthDate: {type: String},
     donation: {type: Number, default: 0, required: true},

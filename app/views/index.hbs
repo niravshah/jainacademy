@@ -11,17 +11,41 @@
                 <div class="panel-body">
                     <form action="{{form_url}}" method="post" id="payment-form">
                         <div class="form-row">
-                            <div class="form-group col-md-8 col-xs-12">
+                            <div class="form-group col-md-12 col-xs-12">
                                 <label for="ticketType">Ticket Type</label>
                                 <select id="ticketType" class="form-control" multiple="multiple">
-                                    <option value="125" selected>All Days. All Sessions (£125)</option>
-                                    <option value="100">All Days. All Sessions. Students/Reduced (£100)</option>
-                                    <option value="21">Saturday, 25th August, 8.00am - 7.00pm (£21)</option>
-                                    <option value="21">Sunday, 26th August, 8.00am - 7.00pm (£21)</option>
-                                    <option value="21">Monday, 27th August, 8.00am - 7.00pm (£21)</option>
-                                    <option value="21">Saturday, 1st September, 8.00am - 7.00pm (£21)</option>
-                                    <option value="21">Sunday, 2nd September, 8.00am - 7.00pm (£21)</option>
+                                    <optgroup label="Full Course">
+                                        <option value="115" selected>Full Course - All Days. All Sessions (£115)</option>
+                                        <option value="100">Full Course (Students/Reduced) - All Days. All Sessions. (£100)</option>
+                                    </optgroup>
+                                    <optgroup label="Individual Days">
+                                        <option value="23">Saturday, 25th August, 8.00am - 7.00pm (£23)</option>
+                                        <option value="23">Sunday, 26th August, 8.00am - 7.00pm (£23)</option>
+                                        <option value="23">Monday, 27th August, 8.00am - 7.00pm (£23)</option>
+                                        <option value="23">Saturday, 1st September, 8.00am - 7.00pm (£23)</option>
+                                        <option value="23">Sunday, 2nd September, 8.00am - 7.00pm (£23)</option>
+                                        <option value="16"> Weekday Evening Lectures, Tues 28th-Fri 31st (Free. Suggested Donation £16)</option>
+                                    </optgroup>
+                                </select>
+                            </div>
 
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-8 col-xs-12">
+                                <label for="inputDonation">Add a Donation</label>
+                                <a href="#" data-toggle="tooltip" data-placement="right"
+                                   title="We are operating this course at a loss to make it affordable and accessible to all members of our community. We would appreciate any additional donation you can give"> <span
+                                        class="glyphicon glyphicon-question-sign"></span>
+                                </a>
+                                <select id="inputDonation" class="form-control">
+                                    <option value="0">£0</option>
+                                    <option value="5">£5</option>
+                                    <option value="10" selected>£10</option>
+                                    <option value="15">£15</option>
+                                    <option value="20">£20</option>
+                                    <option value="25">£25</option>
+                                    <option value="30">£30</option>
+                                    <option value="50">£50</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-4 col-xs-12">
@@ -38,14 +62,15 @@
 
                         <div class="form-row">
                             <div class="form-group col-md-6 col-xs-12">
-                                <label for="inputFirstName">First Name</label>
+                                <label for="inputFirstName">Full Name</label>
                                 <input type="text" class="form-control" id="inputFirstName" placeholder="First Name"
                                        required>
                                 <div class="help-block with-errors"></div>
                             </div>
                             <div class="form-group col-md-6 col-xs-12">
-                                <label for="inputLastName">Last Name</label>
-                                <input type="text" class="form-control" id="inputLastName" placeholder="Last Name">
+                                <label for="inputTeleNum">Telephone Number</label>
+                                <input type="text" class="form-control" id="inputTeleNum" required>
+                                <div class="help-block with-errors"></div>
                             </div>
                         </div>
                         <div class="form-row">
@@ -72,25 +97,6 @@
                                 <div id="card-element">
                                 </div>
                                 <div id="card-errors" role="alert"></div>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-12 col-xs-12">
-                                <label for="inputDonation">Add a Donation</label>
-                                <a href="#" data-toggle="tooltip" data-placement="right"
-                                   title="We are operating this course at a loss to make it affordable and accessible to all members of our community. We would appreciate any additional donation you can give"> <span
-                                        class="glyphicon glyphicon-question-sign"></span>
-                                </a>
-                                <select id="inputDonation" class="form-control">
-                                    <option value="0">£0</option>
-                                    <option value="5">£5</option>
-                                    <option value="10" selected>£10</option>
-                                    <option value="15">£15</option>
-                                    <option value="20">£20</option>
-                                    <option value="25">£25</option>
-                                    <option value="30">£30</option>
-                                    <option value="50">£50</option>
-                                </select>
                             </div>
                         </div>
                         <div class="form-row col-md-12 col-xs-12 align-center">
