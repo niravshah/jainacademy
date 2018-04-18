@@ -16,8 +16,8 @@
 
         .page {
             position: relative;
-            height: 270mm;
-            width: 150mm;
+            height: 279.4mm;
+            width: 215.9mm;
             display: block;
             background: #ffffff;
             page-break-after: auto;
@@ -37,13 +37,6 @@
             }
         }
 
-        .bottom {
-            position: absolute;
-            left: 5mm;
-            right: 5mm;
-            bottom: 5mm;
-        }
-
         .top {
             position: absolute;
             left: 5mm;
@@ -52,10 +45,10 @@
         }
 
         .top img {
-            width: 50%
+            width: 40%
         }
 
-        .top p{
+        .ref {
             font-family: 'Roboto', sans-serif;
             font-size: 20px;
         }
@@ -67,10 +60,11 @@
             border-bottom: solid 2px;
         }
 
-        .bottom img {
+        .map img {
             max-height: 80mm;
         }
-        .bold{
+
+        .bold {
             font-family: 'Roboto Slab', serif;
             font-size: 16px;
             font-weight: bold;
@@ -84,16 +78,14 @@
     <div class="top">
         <img src="http://localhost:3000/tickets/img/logo-black.png">
         <h2>Certificate Course in Jainism</h2>
-        <p>Your ticket reference number is: <span style="color:#ed2025"> <%= ref %></span></p>
-    </div>
-    <div class="bottom">
+        <p class="ref">Your ticket reference number is: <span style="color:#ed2025"> <%= ref %></span></p>
         <p class="bold">Course Schedule:</p>
         <p>Saturday 25th Aug 2018 - Monday 27th Aug 2018 : 8.30am - 7.00pm (Lunch included)</p>
         <p>Tuesday 28th Aug 2018 - Friday 31st Aug 2018 : 8.00pm - 10.00pm</p>
         <p>Saturday 1st Sept 2018 - Sunday 2nd Sept 2018 : 8.30am - 7.00pm (Lunch included)</p>
         <p class="bold">Course Venue:</p>
         <p> The Jain Centre 64-68 Colindale Avenue, London NW9 5DR(map)</p>
-        <img src="http://localhost:3000/tickets/img/jc-map.png">
+        <img class="map" src="http://localhost:3000/tickets/img/jc-map.png">
         <p class="bold">How to get there:</p>
         <p>Train: The nearest underground station is Colindale on the Edgware Branch of the Northern Line. The Centre is
             5 minutes walk.</p>
