@@ -101,49 +101,11 @@ router.post('/:eventId/tickets/issue', function (req, res, next) {
     });
 });
 
-router.get('/test/pdf/email', function (req, res) {
-    ejs.renderFile(require.resolve('../templates/tmpl1.html'), {ref: "ref1234"}, {}, function (err, html) {
-        if (err) {
-            res.status(500).send({"error": err});
-        } else {
-            var options = {format: 'Letter'};
-            pdf.create(html, options).toBuffer(function (err, buffer) {
-                if (err) res.status(500).send({"error": err});
-                else {
-                    nodemailerMailgun.sendMail({
-                        from: "nirav.shah83@gmail.com",
-                        to: "nirav.shah83@gmail.com",
-                        subject: 'Your Tickets from Jain Academy: Email Test',
-                        text: 'Your payment has been successfully received. Your ticket reference number is: ',
-                        attachments: [{filename: 'ticket.pdf', content: buffer}]
-                    }, function (err, info) {
-                        if (err) {
-                            console.log(err);
-                            res.status(500).send({"nodemailer error": err});
-                        }
-                        else {
-                            res.send({"message": "success"})
-
-                        }
-                    });
-                }
-            });
-        }
-    });
-});
-
-
 emailQueue.process(function (job, done) {
     //console.log('New Email Job Received!', job.data);
     logger.info({ref: job.data.ref, eventId: job.data.eventId, status: 'EMAIL_REQUEST', data: job.data});
 
-    nodemailerMailgun.sendMail({
-        from: process.env.MAILGUN_FROM_EMAIL,
-        to: job.data.data.email,
-        subject: 'Your Tickets from Jain Academy: ' + job.data.ref,
-        'h:Reply-To': process.env.MAILGUN_FROM_EMAIL,
-        text: 'Your payment has been successfully received. Your ticket reference number is: ' + job.data.ref
-    }, function (err, info) {
+    ejs.renderFile(require.resolve('../templates/tmpl1.html'), {ref: job.data.ref}, {}, function (err, html) {
         if (err) {
             logger.info({
                 ref: job.data.ref,
@@ -154,17 +116,55 @@ emailQueue.process(function (job, done) {
             });
             console.log('Error: ' + err);
             done(err);
-        }
-        else {
-            logger.info({
-                ref: job.data.ref,
-                eventId: job.data.eventId,
-                status: 'SUCCESS_EMAIL_REQUEST',
-                data: null,
-                err: null
+
+        } else {
+            var options = {format: 'Letter'};
+            pdf.create(html, options).toBuffer(function (err, buffer) {
+                if (err) {
+                    logger.info({
+                        ref: job.data.ref,
+                        eventId: job.data.eventId,
+                        status: 'ERROR_EMAIL_REQUEST',
+                        data: null,
+                        err: err
+                    });
+                    console.log('Error: ' + err);
+                    done(err);
+
+                }
+                else {
+                    nodemailerMailgun.sendMail({
+                        from: process.env.MAILGUN_FROM_EMAIL,
+                        to: job.data.data.email,
+                        subject: 'Your Tickets from Jain Academy: ' + job.data.ref,
+                        'h:Reply-To': process.env.MAILGUN_FROM_EMAIL,
+                        text: 'Your payment has been successfully received. Your ticket reference number is: ' + job.data.ref
+                    }, function (err, info) {
+                        if (err) {
+                            logger.info({
+                                ref: job.data.ref,
+                                eventId: job.data.eventId,
+                                status: 'ERROR_EMAIL_REQUEST',
+                                data: null,
+                                err: err
+                            });
+                            console.log('Error: ' + err);
+                            done(err);
+                        }
+                        else {
+                            logger.info({
+                                ref: job.data.ref,
+                                eventId: job.data.eventId,
+                                status: 'SUCCESS_EMAIL_REQUEST',
+                                data: null,
+                                err: null
+                            });
+                            //console.log('Response: ' + info);
+                            done();
+                        }
+                    });
+                }
             });
-            //console.log('Response: ' + info);
-            done();
         }
     });
 });
