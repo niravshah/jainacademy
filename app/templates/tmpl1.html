@@ -1,0 +1,93 @@
+<html>
+<head>
+    <meta charset="utf8">
+    <title>SuitArt Business Card</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab" rel="stylesheet">
+    <!-- Latest compiled and minified CSS -->
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto';
+            font-weight: 500;
+            font-size: 16px;
+            background: rgb(241, 241, 241);
+            -webkit-print-color-adjust: exact;
+            box-sizing: border-box;
+        }
+
+        .page {
+            position: relative;
+            height: 270mm;
+            width: 150mm;
+            display: block;
+            background: #ffffff;
+            page-break-after: auto;
+            margin: 50px;
+            overflow: hidden;
+        }
+
+        @media print {
+            body {
+                background: #ffffff;
+            }
+
+            .page {
+                margin: 0;
+                height: 100%;
+                width: 100%;
+            }
+        }
+
+        .bottom {
+            position: absolute;
+            left: 5mm;
+            right: 5mm;
+            bottom: 5mm;
+        }
+
+        .top {
+            position: absolute;
+            left: 5mm;
+            right: 5mm;
+            top: 10mm;
+        }
+
+        .top img {
+            width: 50%
+        }
+
+        .top h2 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 20px;
+        }
+
+        .refText {
+            position: absolute;
+            left: 5mm;
+            right: 5mm;
+            top: 20mm;
+        }
+
+        .bottom img {
+            max-width: 100mm;
+            float: right;
+        }
+
+    </style>
+</head>
+<body>
+<div class="page">
+    <div class="top">
+        <img src="http://localhost:3000/tickets/img/logo-black.png">
+        <h2>Certificate Course in Jainism</h2>
+        <p>Your ticket reference number is: <%= ref %></p>
+    </div>
+    <div class="body"></div>
+    <div class="refText" id="pageFooter">Default Footer</div>
+    <div class="bottom">
+        <img src="http://localhost:3000/tickets/img/jc-map.png">
+    </div>
+</div>
+</body>
+</html>

@@ -22,6 +22,8 @@ var logger = bunyan.createLogger({
     }]
 });
 
+var ejs = require('ejs');
+var pdf = require('html-pdf');
 
 router.get('/:eventId/tickets', function (req, res, next) {
 
@@ -99,6 +101,56 @@ router.post('/:eventId/tickets/issue', function (req, res, next) {
     });
 });
 
+router.get('/test/pdf/email', function (req, res) {
+    var options = {format: 'Letter'};
+
+    pdf.create(html, options).toBuffer(function (err, buffer) {
+        if (err) res.status(500).send({"error": err});
+        else {
+            nodemailerMailgun.sendMail({
+                from: "nirav.shah83@gmail.com",
+                to: "nirav.shah83@gmail.com",
+                subject: 'Your Tickets from Jain Academy: Email Test',
+                text: 'Your payment has been successfully received. Your ticket reference number is: ',
+                attachments: [{filename: 'ticket.pdf', content: buffer}]
+            }, function (err, info) {
+                if (err) {
+                    console.log(err);
+                    res.status(500).send({"nodemailer error": err});
+                }
+                else {
+                    res.send({"message": "success"})
+
+                }
+            });
+        }
+        ;
+    });
+});
+
+
+router.get('/test/pdf', function (req, res) {
+
+    ejs.renderFile(require.resolve('../templates/tmpl1.html'), {ref:"ref1234"}, {}, function (err, str) {
+        if (err) console.log('EJS Error', err);
+        else{
+            var options = {format: 'Letter'};
+            pdf.create(str, options).toBuffer(function (err, stream) {
+                if (err) res.status(500).send({"error": err});
+                else {
+                    res.contentType("application/pdf");
+                    res.send(stream);
+                }
+            });
+        }
+    });
+
+
+
+
+});
+
+
 emailQueue.process(function (job, done) {
     //console.log('New Email Job Received!', job.data);
     logger.info({ref: job.data.ref, eventId: job.data.eventId, status: 'EMAIL_REQUEST', data: job.data});
@@ -111,12 +163,24 @@ emailQueue.process(function (job, done) {
         text: 'Your payment has been successfully received. Your ticket reference number is: ' + job.data.ref
     }, function (err, info) {
         if (err) {
-            logger.info({ref: job.data.ref, eventId: job.data.eventId, status: 'ERROR_EMAIL_REQUEST', data: null, err: err});
+            logger.info({
+                ref: job.data.ref,
+                eventId: job.data.eventId,
+                status: 'ERROR_EMAIL_REQUEST',
+                data: null,
+                err: err
+            });
             console.log('Error: ' + err);
             done(err);
         }
         else {
-            logger.info({ref: job.data.ref, eventId: job.data.eventId, status: 'SUCCESS_EMAIL_REQUEST', data: null, err: null});
+            logger.info({
+                ref: job.data.ref,
+                eventId: job.data.eventId,
+                status: 'SUCCESS_EMAIL_REQUEST',
+                data: null,
+                err: null
+            });
             //console.log('Response: ' + info);
             done();
         }
