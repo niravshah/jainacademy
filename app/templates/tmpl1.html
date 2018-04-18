@@ -1,16 +1,14 @@
 <html>
 <head>
     <meta charset="utf8">
-    <title>SuitArt Business Card</title>
+    <title>Jain Academy Certificate Course</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab" rel="stylesheet">
-    <!-- Latest compiled and minified CSS -->
     <style>
         html, body {
             margin: 0;
             padding: 0;
             font-family: 'Roboto';
-            font-weight: 500;
-            font-size: 16px;
+            font-size: 12px;
             background: rgb(241, 241, 241);
             -webkit-print-color-adjust: exact;
             box-sizing: border-box;
@@ -57,22 +55,27 @@
             width: 50%
         }
 
-        .top h2 {
-            font-family: 'Roboto Slab', serif;
+        .top p{
+            font-family: 'Roboto', sans-serif;
             font-size: 20px;
         }
 
-        .refText {
-            position: absolute;
-            left: 5mm;
-            right: 5mm;
-            top: 20mm;
+        .top h2 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 20px;
+            padding-bottom: 20px;
+            border-bottom: solid 2px;
         }
 
         .bottom img {
-            max-width: 100mm;
-            float: right;
+            max-height: 80mm;
         }
+        .bold{
+            font-family: 'Roboto Slab', serif;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
 
     </style>
 </head>
@@ -81,12 +84,23 @@
     <div class="top">
         <img src="http://localhost:3000/tickets/img/logo-black.png">
         <h2>Certificate Course in Jainism</h2>
-        <p>Your ticket reference number is: <%= ref %></p>
+        <p>Your ticket reference number is: <span style="color:#ed2025"> <%= ref %></span></p>
     </div>
-    <div class="body"></div>
-    <div class="refText" id="pageFooter">Default Footer</div>
     <div class="bottom">
+        <p class="bold">Course Schedule:</p>
+        <p>Saturday 25th Aug 2018 - Monday 27th Aug 2018 : 8.30am - 7.00pm (Lunch included)</p>
+        <p>Tuesday 28th Aug 2018 - Friday 31st Aug 2018 : 8.00pm - 10.00pm</p>
+        <p>Saturday 1st Sept 2018 - Sunday 2nd Sept 2018 : 8.30am - 7.00pm (Lunch included)</p>
+        <p class="bold">Course Venue:</p>
+        <p> The Jain Centre 64-68 Colindale Avenue, London NW9 5DR(map)</p>
         <img src="http://localhost:3000/tickets/img/jc-map.png">
+        <p class="bold">How to get there:</p>
+        <p>Train: The nearest underground station is Colindale on the Edgware Branch of the Northern Line. The Centre is
+            5 minutes walk.</p>
+        <p>Bus: Buses 303 and 204 stop just opposite the Centre at Stonecrop Close (stop name)
+            Buses 32 and 142 stop at Colindale Avenue from where it is about 3 to 4 minutes walk.
+            Bus 324 stops at Colindeep Lane – the Centre is just 2 minutes walk.
+        <p>Car Parking: In front of the Centre, there is off street parking</p>
     </div>
 </div>
 </body>
