@@ -102,44 +102,30 @@ router.post('/:eventId/tickets/issue', function (req, res, next) {
 });
 
 router.get('/test/pdf/email', function (req, res) {
-    var options = {format: 'Letter'};
-
-    pdf.create(html, options).toBuffer(function (err, buffer) {
-        if (err) res.status(500).send({"error": err});
-        else {
-            nodemailerMailgun.sendMail({
-                from: "nirav.shah83@gmail.com",
-                to: "nirav.shah83@gmail.com",
-                subject: 'Your Tickets from Jain Academy: Email Test',
-                text: 'Your payment has been successfully received. Your ticket reference number is: ',
-                attachments: [{filename: 'ticket.pdf', content: buffer}]
-            }, function (err, info) {
-                if (err) {
-                    console.log(err);
-                    res.status(500).send({"nodemailer error": err});
-                }
-                else {
-                    res.send({"message": "success"})
-
-                }
-            });
-        }
-        ;
-    });
-});
-
-
-router.get('/test/pdf', function (req, res) {
-
-    ejs.renderFile(require.resolve('../templates/tmpl1.html'), {ref:"ref1234"}, {}, function (err, str) {
-        if (err) console.log('EJS Error', err);
-        else{
+    ejs.renderFile(require.resolve('../templates/tmpl1.html'), {ref: "ref1234"}, {}, function (err, html) {
+        if (err) {
+            res.status(500).send({"error": err});
+        } else {
             var options = {format: 'Letter'};
-            pdf.create(str, options).toBuffer(function (err, stream) {
+            pdf.create(html, options).toBuffer(function (err, buffer) {
                 if (err) res.status(500).send({"error": err});
                 else {
-                    res.contentType("application/pdf");
-                    res.send(stream);
+                    nodemailerMailgun.sendMail({
+                        from: "nirav.shah83@gmail.com",
+                        to: "nirav.shah83@gmail.com",
+                        subject: 'Your Tickets from Jain Academy: Email Test',
+                        text: 'Your payment has been successfully received. Your ticket reference number is: ',
+                        attachments: [{filename: 'ticket.pdf', content: buffer}]
+                    }, function (err, info) {
+                        if (err) {
+                            console.log(err);
+                            res.status(500).send({"nodemailer error": err});
+                        }
+                        else {
+                            res.send({"message": "success"})
+
+                        }
+                    });
                 }
             });
         }
