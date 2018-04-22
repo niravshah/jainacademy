@@ -1,5 +1,51 @@
+
+.box1 {
+    margin: 10px;
+    min-height: 300px;
+    background: #fff center center;
+    background-size: cover;
+    border-radius: 5px;
+    box-shadow: rgba(39, 44, 49, 0.06) 8px 14px 38px, rgba(39, 44, 49, 0.03) 1px 3px 8px;
+    transition: all 0.5s ease;
+}
+
+.container-p10 {
+    padding: 10px;
+}
+
+.container-p10 h3 {
+    margin: 0.5em 0em;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+.sticky {
+    background-image: linear-gradient(rgba(102, 84, 52, 0.45), rgba(102, 84, 52, 0.45)), url('/assets/img/bg3.jpg');
+    color: #fff;
+    z-index: 999;
+    border-radius: 5px;
+}
+
+.sticky .hide-on-sticky {
+    display: none;
+}
+
+.course-why .emphasis{
+    font-style: italic;
+}
 .inner {
     max-width: 2040px;
+}
+
+blockquote p {
+    font-style: italic;
+    font-size: 1em;
 }
 
 .site-header {

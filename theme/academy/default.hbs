@@ -16,11 +16,13 @@
 
     {{!-- Styles'n'Scripts --}}
 
-    <link rel="stylesheet" type="text/css" href="{{asset "built/pure-min.css"}}"/>
-    <link rel="stylesheet" type="text/css" href="{{asset "built/grids-responsive-min.css"}}"/>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
 
     <link rel="stylesheet" type="text/css" href="{{asset "built/screen.css"}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset "built/academy.css"}}"/>
+
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.2.1/plyr.css">
 
     {{!-- This tag outputs SEO meta+structured data and other important settings --}}
     {{ghost_head}}
@@ -69,9 +71,15 @@
 {{/if}}
 
 {{!-- jQuery + Fitvids, which makes all video embeds responsive --}}
+
+
 <script type="text/javascript" src="{{asset "js/jquery-3.2.1.min.js"}}"></script>
 <script type="text/javascript" src="{{asset "js/jquery.fitvids.js"}}"></script>
 <script type="text/javascript" src="{{asset "js/sticky.min.js"}}"></script>
+
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="https://cdn.plyr.io/3.2.1/plyr.js"></script>
+
 
 {{#if pagination.pages}}
     <script>
