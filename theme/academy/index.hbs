@@ -25,64 +25,7 @@ into the {body} of the default.hbs template --}}
     <div class="inner">
 
         <div class="headline">
-            <div class="subscribe {{#if
-                    @blog.cover_image}}" style="margin-left:0px;background-image: linear-gradient(rgba(102, 84, 52, 0.45),rgba(102, 84, 52, 0.45)), url({{@blog.cover_image}}){{else}}no-cover{{/if}}">
 
-                <h2 class="title">Learn About Jainism</h2>
-                <p>We produce a high quality monthly newsletter with in-depth articles focusing on
-                    contemporary Jain values & living.
-                    Subscribe now to stay updated</p>
-
-                <!-- Begin MailChimp Signup Form -->
-                <div id="mc_embed_signup">
-                    <form action="https://sourceinida.us17.list-manage.com/subscribe/post?u=ca6fa852266676f7ba47586b7&amp;id=cd5aa16b11"
-                          method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form"
-                          class="validate pure-form" target="_blank" novalidate>
-                        <div id="mc_embed_signup_scroll">
-
-                            <div class="mc-field-group">
-                                <label for="mce-EMAIL">Email Address <span class="asterisk">*</span>
-                                </label>
-                                <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL"
-                                       style="display: block;width: 100%">
-                            </div>
-                            <div id="mce-responses" class="clear">
-                                <div class="response" id="mce-error-response" style="display:none"></div>
-                                <div class="response" id="mce-success-response" style="display:none"></div>
-                            </div>
-                            <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-                            <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text"
-                                                                                                      name="b_ca6fa852266676f7ba47586b7_cd5aa16b11"
-                                                                                                      tabindex="-1"
-                                                                                                      value=""></div>
-                            <div class="clear"><input type="submit" value="Subscribe" name="subscribe"
-                                                      id="mc-embedded-subscribe" class="button btn-red"></div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="event" style="margin-right: 0px;">
-                <div class="tt">
-                    <p class="above-title">Join our</p>
-                    <h2 class="title">Certificate course in Jainism</h2>
-                    <p class="below-title">with faculty from Mumbai University</p>
-                </div>
-                <div class="description">
-                    <p>This is 40 hours accredited course which has been delivered to hundreds of students in university
-                        of Mumbai over many years.  Non sectarian and covers fundamentals of Jainism such as nav tattva,
-                        bar bhavna, 14 gunasthanak, 5 types of knowledge etc. There is also opportunity to ask deeper
-                        questions. This course will be delivered in English and was successfully delivered as such in
-                        the crash
-                        course format over 5 days in USA in 2016.</p>
-
-                    <p style="margin-bottom: 0px">Dates: Bank Holiday August weekend</p>
-                    <p>Saturday 25th, Sunday 26th, Monday 27th August, and Saturday 1st and Sunday 2nd August</p>
-
-                </div>
-                <div class="cta">
-                    <a class="button btn-red" href="jainism-course">Find out More</a>
-                </div>
-            </div>
         </div>
 
         <div class="section-title">
@@ -101,23 +44,5 @@ into the {body} of the default.hbs template --}}
 </main>
 
 {{#contentFor "scripts"}}
-    <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script>
-    <script type='text/javascript'>(function ($) {
-        window.fnames = new Array();
-        window.ftypes = new Array();
-        fnames[0] = 'EMAIL';
-        ftypes[0] = 'email';
-        fnames[1] = 'FNAME';
-        ftypes[1] = 'text';
-        fnames[2] = 'LNAME';
-        ftypes[2] = 'text';
-        fnames[3] = 'ADDRESS';
-        ftypes[3] = 'address';
-        fnames[4] = 'PHONE';
-        ftypes[4] = 'phone';
-        fnames[5] = 'BIRTHDAY';
-        ftypes[5] = 'birthday';
-    }(jQuery));
-    var $mcj = jQuery.noConflict(true);</script>
 
 {{/contentFor}}
