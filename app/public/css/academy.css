@@ -1,3 +1,10 @@
+.white {
+    color: #fff;
+}
+.uppercase {
+    text-transform: uppercase;
+}
+
 .site-header {
     position: relative;
     padding-top: 12px;
@@ -358,4 +365,13 @@ button {
 
 .multiselect-native-select {
     display: block;
+}
+
+.share-img {
+    background-color: #826147;
+}
+
+.share-img img {
+    display: block;
+    margin: auto;
 }

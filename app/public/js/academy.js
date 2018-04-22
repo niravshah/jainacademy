@@ -22,6 +22,12 @@ $(function () {
         setPaymentValue();
     });
 
+    $('#downloadImage').on('click', function (ev) {
+        ev.preventDefault();
+        console.log('Download Image button pressed');
+        convertDomToImage()
+    });
+
     var defaultDate = moment("20000101", "YYYYMMDD");
     $('#datetimepicker1').datetimepicker({format: 'MM/DD/YYYY', defaultDate: defaultDate});
     $('[data-toggle="tooltip"]').tooltip();
@@ -100,9 +106,7 @@ $(function () {
     });
 
     function setPaymentValue() {
-
         $('#submitPaymentBtn').html('Submit Payment - £' + getPaymentAmount())
-
     }
 
     function getPaymentAmount() {
@@ -138,6 +142,17 @@ $(function () {
         data['tickets'] = getSelectedTickets();
         data['paymentAmount'] = getPaymentAmount();
         return data;
+    }
+
+    function convertDomToImage() {
+        domtoimage.toJpeg(document.getElementById('whatsapp-share-img'), {quality: 0.95})
+            .then(function (dataUrl) {
+                var link = document.createElement('a');
+                link.download = 'my-image-name.jpeg';
+                link.href = dataUrl;
+                link.click();
+            });
+
     }
 
 });
