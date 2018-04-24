@@ -59,7 +59,8 @@ router.post('/:eventId/tickets/issue', function (req, res, next) {
 
     var req = new Request(data);
     req['ref'] = ref;
-    req['eventId'] = eventId;
+    req['eventId'] = eventId
+    var paymentDesc = ref + data.email;
 
     req.save(function (err, newreq) {
         if (err) {
@@ -70,7 +71,7 @@ router.post('/:eventId/tickets/issue', function (req, res, next) {
             stripe.charges.create({
                 amount: paymentAmount,
                 currency: "gbp",
-                description: ref,
+                description: paymentDesc,
                 source: data.stripeToken.id,
             }, function (err, charge) {
                 if (err) {
