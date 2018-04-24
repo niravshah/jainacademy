@@ -64,6 +64,9 @@ router.post('/:eventId/tickets/issue', function (req, res, next) {
 
     var md = JSON.parse(JSON.stringify(data));
     delete md.stripeToken;
+    var ticketStr = JSON.stringify(md.tickets);
+    delete md.tickets;
+    md.tickets = ticketStr;
 
     req.save(function (err, newreq) {
         if (err) {
