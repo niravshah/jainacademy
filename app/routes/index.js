@@ -54,12 +54,12 @@ router.post('/:eventId/tickets/issue', function (req, res, next) {
     });
 
     paymentAmount = parseInt(paymentAmount) * parseInt(data.numOfTickets) + parseInt(data.donation);
-
     paymentAmount = paymentAmount * 100;
 
+    data['ref'] = ref;
+    data['eventId'] = eventId;
+
     var req = new Request(data);
-    req['ref'] = ref;
-    req['eventId'] = eventId;
     var paymentDesc = ref + "-" + data.email + "-" + data.telNum;
 
     req.save(function (err, newreq) {
@@ -75,7 +75,7 @@ router.post('/:eventId/tickets/issue', function (req, res, next) {
                 source: data.stripeToken.id,
                 receipt_email: data.email,
                 statement_descriptor: 'Jain Academy Certificate Course in Jainism Tickets. Ref - ' + ref,
-                metadata: newreq
+                metadata: data
             }, function (err, charge) {
                 if (err) {
                     logger.info({ref: ref, eventId: eventId, status: 'ERROR_STRIPE_CHARGE', err: err, data: null});
