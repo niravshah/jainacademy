@@ -55,6 +55,8 @@ router.post('/:eventId/tickets/issue', function (req, res, next) {
 
     paymentAmount = parseInt(paymentAmount) * parseInt(data.numOfTickets) + parseInt(data.donation);
 
+    paymentAmount = paymentAmount * 100;
+
     var req = new Request(data);
     req['ref'] = ref;
     req['eventId'] = eventId;
