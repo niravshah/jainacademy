@@ -79,7 +79,6 @@ router.post('/:eventId/tickets/issue', function (req, res, next) {
                 currency: "gbp",
                 description: paymentDesc,
                 source: data.stripeToken.id,
-                receipt_email: data.email,
                 statement_descriptor: 'Jain Academy Tickets',
                 metadata: md
             }, function (err, charge) {
