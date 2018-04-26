@@ -73,7 +73,7 @@ $(function () {
         }
     });
 
-    var stripe = Stripe('pk_test_zp3BDimcfYz2M66JiDjqHTLb');
+    var stripe = Stripe('pk_live_p5ytneUFhzMSWRuCpi5siZRc');
     var elements = stripe.elements();
 
     var style = {
