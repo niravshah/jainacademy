@@ -28,8 +28,8 @@ $(function () {
         convertDomToImage()
     });
 
-    var defaultDate = moment("20000101", "YYYYMMDD");
-    $('#datetimepicker1').datetimepicker({format: 'MM/DD/YYYY', defaultDate: defaultDate});
+    var defaultDate = moment("20000130", "YYYYMMDD");
+    $('#datetimepicker1').datetimepicker({format: 'DD/MM/YYYY', defaultDate: defaultDate});
     $('[data-toggle="tooltip"]').tooltip();
 
     $('#payment-form').validator().on('submit', function (e) {
