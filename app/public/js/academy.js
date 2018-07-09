@@ -111,8 +111,10 @@ $(function () {
 
     function getPaymentAmount() {
         var tickets = $('#ticketType option:selected');
+        console.log("Get Payment Amount: ", tickets);
         var totalCost = 0;
         $(tickets).each(function (idx, ticket) {
+            console.log(ticket);
             totalCost += parseInt($(this).val());
         });
 
