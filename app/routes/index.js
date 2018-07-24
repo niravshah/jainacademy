@@ -145,6 +145,21 @@ router.get('/test/pdf/email', function (req, res) {
 });
 
 
+router.post('/:eventId/tickets/issue/error', function (req, res, next) {
+
+    nodemailerMailgun.sendMail({
+        from: process.env.MAILGUN_FROM_EMAIL,
+        to: "nirav.shah83@gmail.com",
+        subject: 'New Jain Academy Error',
+        'h:Reply-To': process.env.MAILGUN_FROM_EMAIL,
+        text: JSON.stringify(req.body.data) + "\nRef: " + JSON.stringify(req.body.data) ,
+        attachments: [{filename: fileName, content: buffer}]
+    }, function (err, info) {
+        res.json({"message": "thanks"});
+    });
+
+});
+
 emailQueue.process(function (job, done) {
     //console.log('New Email Job Received!', job.data);
     logger.info({ref: job.data.ref, eventId: job.data.eventId, status: 'EMAIL_REQUEST', data: job.data});

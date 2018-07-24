@@ -36,6 +36,7 @@ $(function () {
 
         $form = $(this);
         var url = $form.attr('action');
+        var errorUrl = url + '/error';
 
         $('.processing').show();
         $('#payment-form').hide();
@@ -66,6 +67,14 @@ $(function () {
                             $('.processing').hide();
                             $('.processing-error').show();
                             $('#refFromServer').text("Your reference is: " + result.ref)
+
+                            $.ajax({
+                                url: errorUrl,
+                                type: 'POST',
+                                contentType: 'application/json',
+                                dataType: 'json',
+                                data: JSON.stringify({data: getFormData(error.message), ref: getFormData(result.token)})
+                            })
                         }
                     })
                 }
